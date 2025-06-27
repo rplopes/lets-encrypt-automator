@@ -100,6 +100,9 @@ export async function renew() {
 // Tiny HTTP server using the Node stdlib
 // ---------------------------------------------------------------------------
 const server = http.createServer(async (req, res) => {
+  if (req.method === 'GET' && req.url === 'health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' }).end(JSON.stringify({ ok: true }));
+  }
   if (req.method === 'POST' && req.url === '/certificate/renew') {
     if (req.headers.authorization !== `Bearer ${RENEW_SECRET}`) {
       res.writeHead(401).end('unauthorized');
