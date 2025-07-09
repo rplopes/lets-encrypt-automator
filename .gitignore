@@ -1,4 +1,5 @@
 node_modules
 config.json
 certificates
-renewal.log
+data
+renewer.log
